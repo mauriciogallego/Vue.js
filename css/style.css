@@ -1,0 +1,21 @@
+img#background{
+    top:-50px;
+    z-index:-1;
+    width: 100%;
+}
+a{
+    list-style: none;
+}
+
+p{
+    font-size: 14px;
+}
+.imgBody{
+    top: -150px;
+    z-index: -1;
+}
+#box2{
+    color: black;
+    background: rgba(255, 235, 205, 0.13);
+}
+
