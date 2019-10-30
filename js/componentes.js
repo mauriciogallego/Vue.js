@@ -42,7 +42,7 @@ Vue.component('menuprincipal', {
 /*************TABLAS***************************************/
 Vue.component("filtertable", {
   template: //html
- `<div>
+`<div class="w-50 p-3">
  <div class="input-group mb-3">
     <h2 class="d-block w-100">Parties</h2>
     <label for="party"></label>
@@ -51,7 +51,7 @@ Vue.component("filtertable", {
       <h6 class="m-auto">{{value}}</h6>
     </div>
   </div>
-  <div>
+  <div class="my-3">
     <h2>States</h2>
     <form id="filterStates">
       <select @change="changeFunction($event)" class="custom-select">
@@ -60,7 +60,7 @@ Vue.component("filtertable", {
     </form>  
   </div>
   <tableresult :members="members" :selected="selected" :checkParty="checkParty"></tableresult>
-  </div>`,
+</div>`,
   data: function(){
     return{
       options: {
