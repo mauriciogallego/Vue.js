@@ -1,3 +1,4 @@
+/*************MENU***************************************/
 Vue.component('menuprincipal', {
   template: //html
   `<div class="clearfix bg-dark shadow rounded fixed-top">
@@ -38,89 +39,108 @@ Vue.component('menuprincipal', {
     }
   }
 });
+/*************TABLAS***************************************/
+Vue.component("filtertable", {
+  template: //html
+ `<div>
+ <div class="input-group mb-3">
+    <h2 class="d-block w-100">Parties</h2>
+    <label for="party"></label>
+    <div class="input-group-text" v-for="(value,name) in party">
+      <input @click="clickFunction(name)" type="checkbox" name="party" :value="name" aria-label="Checkbox for following text input">
+      <h6 class="m-auto">{{value}}</h6>
+    </div>
+  </div>
+  <div>
+    <h2>States</h2>
+    <form id="filterStates">
+      <select @change="changeFunction($event)" class="custom-select">
+      <option v-for="(value, name) in options" :value="name">{{value}}</option>
+    </select>
+    </form>  
+  </div>
+  <tableresult :members="members" :selected="selected" :checkParty="checkParty"></tableresult>
+  </div>`,
+  data: function(){
+    return{
+      options: {
+    "" :"Choose State",
+    "AL": "Alabama",
+    "AK": "Alaska",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "California",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "FL": "Florida",
+    "GA": "Georgia",
+    "HI": "Hawaii",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiana",
+    "ME": "Maine",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NH": "New Hampshire",
+    "NJ": "New Jersey",
+    "NM": "New Mexico",
+    "NY": "New York",
+    "NC": "North Carolina",
+    "ND": "North Dakota",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PA": "Pennsylvania",
+    "RI": "Rhode Island",
+    "SC": "South Carolina",
+    "SD": "South Dakota",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VA": "Virginia",
+    "WA": "Washington",
+    "WV": "West Virginia",
+    "WI": "Wisconsin",
+    "WY": "Wyoming",
+      },
+      selected:'',
+      changeFunction: function(value){
+          this.selected = value.target.value
+      },
+      party: {
+        "D": "Democrat",
+        "R": "Republican",
+        "I": "Independet"
+      },
+      checkParty:{
+        "D": false,
+        "R": false,
+        "I": false
+      },
+      clickFunction: function(value){
+        this.checkParty[value] = !this.checkParty[value]
+      }
+    }
+  },
+  props: ['members']
+});
 
-Vue.component("filterstates", {
-  template: //html
-  `<form @change="" id="filterStates">
-    <select class="custom-select">
-    <option value="">Choose State</option>
-    <option value="AL">Alabama</option>
-    <option value="AK">Alaska</option>
-    <option value="AZ">Arizona</option>
-    <option value="AR">Arkansas</option>
-    <option value="CA">California</option>
-    <option value="CO">Colorado</option>
-    <option value="CT">Connecticut</option>
-    <option value="DE">Delaware</option>
-    <option value="FL">Florida</option>
-    <option value="GA">Georgia</option>
-    <option value="HI">Hawaii</option>
-    <option value="ID">Idaho</option>
-    <option value="IL">Illinois</option>
-    <option value="IN">Indiana</option>
-    <option value="IA">Iowa</option>
-    <option value="KS">Kansas</option>
-    <option value="KY">Kentucky</option>
-    <option value="LA">Louisiana</option>
-    <option value="ME">Maine</option>
-    <option value="MD">Maryland</option>
-    <option value="MA">Massachusetts</option>
-    <option value="MI">Michigan</option>
-    <option value="MN">Minnesota</option>
-    <option value="MS">Mississippi</option>
-    <option value="MO">Missouri</option>
-    <option value="MT">Montana</option>
-    <option value="NE">Nebraska</option>
-    <option value="NV">Nevada</option>
-    <option value="NH">New Hampshire</option>
-    <option value="NJ">New Jersey</option>
-    <option value="NM">New Mexico</option>
-    <option value="NY">New York</option>
-    <option value="NC">North Carolina</option>
-    <option value="ND">North Dakota</option>
-    <option value="OH">Ohio</option>
-    <option value="OK">Oklahoma</option>
-    <option value="OR">Oregon</option>
-    <option value="PA">Pennsylvania</option>
-    <option value="RI">Rhode Island</option>
-    <option value="SC">South Carolina</option>
-    <option value="SD">South Dakota</option>
-    <option value="TN">Tennessee</option>
-    <option value="TX">Texas</option>
-    <option value="UT">Utah</option>
-    <option value="VT">Vermont</option>
-    <option value="VA">Virginia</option>
-    <option value="WA">Washington</option>
-    <option value="WV">West Virginia</option>
-    <option value="WI">Wisconsin</option>
-    <option value="WY">Wyoming</option>
-  </select>
-</form>
-  `
-})
-Vue.component("filterparties", {
-  template: //html
-  `<div class="input-group mb-3">
-  <h2 class="d-block w-100">Parties</h2>
-  <label for="party"></label>
-  <div class="input-group-text">
-    <input @click="" type="checkbox" name="party" value="D" id="democrat" aria-label="Checkbox for following text input">
-    <h6 class="m-auto">Democrat</h6>
-  </div>
-  <div class="input-group-text">
-    <input @click="" type="checkbox" name="party" value="R" id="republican" aria-label="Checkbox for following text input">
-    <h6 class="m-auto">Republican</h6>
-  </div>
-  <div class="input-group-text">
-    <input @click="" type="checkbox" name="party" value="I" id="independet" aria-label="Checkbox for following text input">
-    <h6 class="m-auto">Independet</h6>
-  </div>
-</div>
-  `
-})
 Vue.component("tableresult", {
   template: //html
-  `<table class="p-3 w-50 float-left table table-dark">
+  `<table class="p-3 w-100 float-left table table-dark">
         <thead>
           <tr>
             <th scope="col">Members</th>
@@ -132,7 +152,7 @@ Vue.component("tableresult", {
           </tr>
         </thead>
         <tbody id="tbody">
-          <tr v-for="x of members" v-if ="">
+          <tr v-for="x of members" v-if ="filtroCheck(x) == true && ( selected == x.state || selected == '')">
             <td>{{members.indexOf(x)}}</td>
             <td>{{x.first_name}} {{x.last_name}}</td>
             <td class="stateFilter">{{x.state}}</td>
@@ -142,7 +162,30 @@ Vue.component("tableresult", {
           </tr>
         </tbody>
       </table>`,
-      props : ['members']
+      data: function(){
+        return {
+          filtroCheck: function(value){
+            let flag= false;
+            for (partyvalue in this.checkParty){
+              if(this.checkParty[partyvalue] == true){
+                flag = true;
+                break;
+              }
+            }
+            if (flag!=false){
+              for (partyvalue in this.checkParty){
+                if(partyvalue == value.party) {
+                  console.log(this.checkParty[partyvalue])
+                  return this.checkParty[partyvalue]
+                }
+              }              
+            }else{
+              return true
+            }           
+          }
+        }
+      },
+      props : ['members','checkParty','selected']
     });
 
 var app = new Vue({

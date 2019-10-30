@@ -18,7 +18,6 @@
       <menuprincipal></menuprincipal>
     </nav>
     <div class="m-2">
-      <tableresult></tableresult>
       <div class="w-50 p-3 float-right">
         <h2>Congressmen</h2>
         <p>The major power of the House is to pass federal legislation that affects the entire country, although its
@@ -31,11 +30,7 @@
         <p>Each U.S. state is represented in the House in proportion to its population as measured in the census,
           but
           every state is entitled to at least one representative. </p>
-        <filterparties></filterparties>
-        <div>
-          <h2>States</h2>
-          <filterstates></filterstates>
-        </div>
+          <filtertable :members="members"></filtertable>
       </div>
     </div>
   </div>
