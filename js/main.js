@@ -2,6 +2,7 @@ var container = { containerParties: [], containerStates: [] };
 var data;
 $(window).ready(function () {
   var heigthWindow = $(window).height();
+  console.log(heigthWindow) //638
   $('.menuBarra').css({ "height": heigthWindow });
   let page;
   if (window.location.href.indexOf("house") > -1) { page = "house" }
