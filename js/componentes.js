@@ -1,6 +1,6 @@
 Vue.component('menuprincipal', {
-  template:`  
-  <div class="clearfix bg-dark shadow rounded fixed-top">
+  template: //html
+  `<div class="clearfix bg-dark shadow rounded fixed-top">
     <a id="logo" class="btn btn-dark" href="index.html">TGIF</a>
     <ul class="nav list-group-horizontal float-right">
       <li><a class="btn btn-dark" href="index.html">Home</a></li>
@@ -14,35 +14,35 @@ Vue.component('menuprincipal', {
       </li>
     </ul>
   </div>`,
-  data: function(){
+  data: function () {
     return {
-      index : window.location.pathname,
+      index: window.location.pathname,
       high: window.innerHeight,
       menu: {
         "Congress 113": {
-          "Senate": "senate-starter-page.html" ,
+          "Senate": "senate-starter-page.html",
           "House": "house-starter-page.html"
         },
-        "Attendance":{
-          "Senate":"senate-attendance.html",
+        "Attendance": {
+          "Senate": "senate-attendance.html",
           "House": "house-attendance.html"
         },
-        "Party Loyalty":{
-          "Senate":"senate-party-loyalty.html",
+        "Party Loyalty": {
+          "Senate": "senate-party-loyalty.html",
           "House": "house-party-loyalty.html"
         }
       },
-      scrollWindow: function(value){
+      scrollWindow: function (value) {
         $(window).scrollTop(this.high * value);
       }
     }
   }
 });
 
-Vue.component("filterstates",{
-  template:`
-  <form action="" method="" id="filterStates">
-  <select class="custom-select">
+Vue.component("filterstates", {
+  template: //html
+  `<form @change="" id="filterStates">
+    <select class="custom-select">
     <option value="">Choose State</option>
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
@@ -98,31 +98,29 @@ Vue.component("filterstates",{
 </form>
   `
 })
-Vue.component("filterparties",{
-  template:`
-  <div class="input-group mb-3">
+Vue.component("filterparties", {
+  template: //html
+  `<div class="input-group mb-3">
   <h2 class="d-block w-100">Parties</h2>
   <label for="party"></label>
   <div class="input-group-text">
-    <input type="checkbox" name="party" value="D" id="democrat" aria-label="Checkbox for following text input">
+    <input @click="" type="checkbox" name="party" value="D" id="democrat" aria-label="Checkbox for following text input">
     <h6 class="m-auto">Democrat</h6>
   </div>
   <div class="input-group-text">
-    <input type="checkbox" name="party" value="R" id="republican"
-      aria-label="Checkbox for following text input">
+    <input @click="" type="checkbox" name="party" value="R" id="republican" aria-label="Checkbox for following text input">
     <h6 class="m-auto">Republican</h6>
   </div>
   <div class="input-group-text">
-    <input type="checkbox" name="party" value="I" id="independet"
-      aria-label="Checkbox for following text input">
+    <input @click="" type="checkbox" name="party" value="I" id="independet" aria-label="Checkbox for following text input">
     <h6 class="m-auto">Independet</h6>
   </div>
 </div>
   `
 })
-Vue.component("tableresult",{
-  template:`
-  <table class="p-3 w-50 float-left table table-dark">
+Vue.component("tableresult", {
+  template: //html
+  `<table class="p-3 w-50 float-left table table-dark">
         <thead>
           <tr>
             <th scope="col">Members</th>
@@ -133,13 +131,37 @@ Vue.component("tableresult",{
             <th scope="col">Total votes</th>
           </tr>
         </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-  `
-})
-new Vue({
+        <tbody id="tbody">
+          <tr v-for="x of members" v-if ="">
+            <td>{{members.indexOf(x)}}</td>
+            <td>{{x.first_name}} {{x.last_name}}</td>
+            <td class="stateFilter">{{x.state}}</td>
+            <td>{{x.seniority}}</td>
+            <td class="partyFilter">{{x.party}}</td>
+            <td>{{x.votes_with_party_pct}}%</td>
+          </tr>
+        </tbody>
+      </table>`,
+      props : ['members']
+    });
+
+var app = new Vue({
   el: '#app',
-  data:{
+  data: {
     high: window.innerHeight,
+    members: []
+  },
+  methods: {
+    json: function () {
+      let page;
+      if (window.location.href.indexOf("house") > -1) { page = "house" }
+      if (window.location.href.indexOf("senate") > -1) { page = "senate" }
+      getJson(page, (json) => {
+        this.members = json.results[0].members;
+      });
+    }
+  },
+  created: function () {
+    this.json()
   }
 });
