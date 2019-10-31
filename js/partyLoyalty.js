@@ -44,7 +44,6 @@ function orderPosition(orderMembers){
             return i.votes_with_party_pct == ele.votes_with_party_pct;
         });
         if(repite){conteo -= 1}
-        console.log(conteo,tope)
         if(conteo>=tope){break}       
         positions.push(i);
     }  
