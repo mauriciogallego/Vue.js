@@ -1,7 +1,6 @@
 var getJson = function(typePerson,callback){
     var url = "https://api.propublica.org/congress/v1/113/{congress}/members.json";
     url = url.replace(/{congress}/g,typePerson);
-    console.log(url)
     var headers = new Headers();
     headers.append("X-API-Key","bYNfpt4aTqzoeoXwxumzkkVitLmFeqCvSfuoN2Yr");
     let options = {

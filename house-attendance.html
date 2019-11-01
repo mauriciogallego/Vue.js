@@ -36,8 +36,8 @@
         <h2>House at a glance</h2>
         <glance :members= "members"></glance>
 
-        <topbottom :fieldOrder="missed_votes_pct" :members="members" :title="'Most Engaged'"></topbottom>
-        <topbottom :fieldOrder="missed_votes_pct" :members="members" :title="'Least Engaged'"></topbottom>
+        <topbottom :field="'missed_votes_pct'" :members="members" :title="'Most Engaged'"></topbottom>
+        <topbottom :field="'missed_votes_pct'" :members="members" :title="'Least Engaged'"></topbottom>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

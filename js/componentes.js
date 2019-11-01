@@ -201,6 +201,9 @@ var app = new Vue({
       if (window.location.href.indexOf("senate") > -1) { page = "senate" }
       getJson(page, (json) => {
         this.members = json.results[0].members;
+        this.members.map(i=>{
+          i.total_vote_ptc = Math.floor((i.total_votes * i.votes_with_party_pct ) / 100);
+        })
       });
     }
   },
