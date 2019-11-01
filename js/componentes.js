@@ -1,3 +1,6 @@
+var initialState = {
+    counterGlance : 0
+}
 /*************MENU***************************************/
 Vue.component('menuprincipal', {
   template: //html
@@ -62,7 +65,6 @@ Vue.component("filtertable", {
   <tableresult :members="members" :selected="selected" :checkParty="checkParty"></tableresult>
 </div>`,
   data: function () {
-    console.log('muchacho')
     return {
       options: {
         "": "Choose State",
@@ -166,6 +168,7 @@ Vue.component("tableresult", {
   data: function () {
     return {
       filtroCheck: function (value) {
+        console.log('filtroCheck()')
         let flag = false;
         for (partyvalue in this.checkParty) {
           if (this.checkParty[partyvalue] == true) {
@@ -176,7 +179,6 @@ Vue.component("tableresult", {
         if (flag != false) {
           for (partyvalue in this.checkParty) {
             if (partyvalue == value.party) {
-              console.log(this.checkParty[partyvalue])
               return this.checkParty[partyvalue]
             }
           }
@@ -190,6 +192,9 @@ Vue.component("tableresult", {
 });
 
 Vue.component("glance", {
+  props: {
+    members : this.members
+  },
   template://html
     `<div class="w-100">
         <table class="p-3 w-50 table table-dark">
@@ -211,10 +216,18 @@ Vue.component("glance", {
         </div>`,
   data: function () {
     return {
-      calculo: calculo(this.members)
+      calculo: []
     }
   },
-  props: ['members']
+  watch: {
+    members : function(){
+      console.log(this.calculo.length)
+        if (this.calculo.length == 0) {
+          this.calculo = calculo(this.members)
+          console.log(this.members)
+        }
+      }
+  }
 });
 
 Vue.component("topbottom", {
@@ -246,7 +259,14 @@ Vue.component("topbottom", {
   data: function () {
     console.log(this.members, this.title, this.field)
     return {
-      order: orderPosition(orderMembers(this.members, this.title, this.field))
+      order:[]
+    }
+  },
+  watch : {
+    members: function(){
+      if (this.order.length == 0){
+        this.order = orderPosition(orderMembers(this.members, this.title, this.field)) 
+      }
     }
   },
   props: ['members','title', 'field']
@@ -260,6 +280,7 @@ var app = new Vue({
     members: []
   },
   beforeCreate: function () {
+    console.log('beforeCreate()')
     let page;
     if (window.location.href.indexOf("house") > -1) { page = "house" }
     if (window.location.href.indexOf("senate") > -1) { page = "senate" }
@@ -268,12 +289,13 @@ var app = new Vue({
       this.members = result.map(i => {
         i.total_vote_ptc = Math.floor((i.total_votes * i.votes_with_party_pct) / 100);
         return i;
-      })
+      });
     });
   }
 });
 
 function orderMembers(members, title, fieldOrder) {
+  console.log('orderMembers()')
   if (title.indexOf('Least') != -1) {
     return members.sort(function (a, b) {
       return a[fieldOrder] - b[fieldOrder];
@@ -287,6 +309,7 @@ function orderMembers(members, title, fieldOrder) {
 }
 
 function orderPosition(orderMember) {
+  console.log('orderPosition()')
   let positions = [];
   let tope = orderMember.length * 0.10;
   let conteo = 0;
@@ -304,7 +327,7 @@ function orderPosition(orderMember) {
 }
 
 function calculo(members) {
-  console.log('entro')
+  console.log('calculo()')
   let container = {
     republican: {
       letter: "R",
@@ -322,6 +345,7 @@ function calculo(members) {
       porcent: 0
     }
   }
+  if(members.length == 0){return []}
   for (member of members) {
     if (member.party == container.democrat.letter) {
       container.democrat.members += 1;
