@@ -11,11 +11,16 @@ p{
     font-size: 14px;
 }
 .imgBody{
-    top: -150px;
+    top: -20px;
     z-index: -1;
 }
 #box2{
     color: black;
     background: rgba(255, 235, 205, 0.13);
 }
-
+#headingOne, #headingTwo{
+    background: rgb(52, 58, 64);
+    height: 50px;
+    margin: 0;
+    padding: 3px;
+}

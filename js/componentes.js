@@ -8,12 +8,10 @@ Vue.component('menuprincipal', {
     <a id="logo" class="btn btn-dark" href="index.html">TGIF</a>
     <ul class="nav list-group-horizontal float-right">
       <li><a class="btn btn-dark" href="index.html">Home</a></li>
-      <li v-on:click="scrollWindow(1)" v-if= "index == '/' || index == '/index.html'" class="event btn btn-dark">About us</li>
-      <li v-on:click="scrollWindow(2)" v-if= "index == '/' || index == '/index.html'" class="event btn btn-dark">History</li>
       <li v-for="(value, name) in menu">
         <a href="#" class="btn btn-dark" data-toggle="dropdown">{{name}}</a>
         <ul class="dropdown-menu">
-          <li v-for = "(value2,name2) in value" class = "btn dropdown-item"> <a :href="value2" class="btn">{{name2}} </a> </li>
+          <li v-for = "(value2,name2) in value" class = "btn dropdown-item"> <a :href="value2">{{name2}} </a> </li>
         </ul>
       </li>
     </ul>
@@ -35,9 +33,6 @@ Vue.component('menuprincipal', {
           "Senate": "senate-party-loyalty.html",
           "House": "house-party-loyalty.html"
         }
-      },
-      scrollWindow: function (value) {
-        $(window).scrollTop(this.high * value);
       }
     }
   }
