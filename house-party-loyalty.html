@@ -12,103 +12,28 @@
 </head>
 
 <body>
-  <nav class="position-relative overflow-hidden menuBarra">
-    <img id="background" src="img/primavera-en-estados-unidos.jpg" alt="uuee" class="position-absolute">
-    <div class="clearfix bg-dark shadow rounded fixed-top">
-      <a id="logo" class="btn btn-dark float-left" href="index.html">TGIF</a>
-      <ul class="nav list-group-horizontal float-right">
-        <li><a class="btn btn-dark" href="index.html">Home</a></li>
-        <li>
-          <a href="#" class="btn btn-dark" data-toggle="dropdown">Congress 113</a>
-          <ul class="dropdown-menu">
-            <li class=" btn dropdown-item"><a class="btn" href="senate-starter-page.html">Senate</a>
-            </li>
-            <li class=" btn dropdown-item"><a class="btn" href="house-starter-page.html">House</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="btn btn-dark" data-toggle="dropdown">Attendance</a>
-          <ul class="dropdown-menu">
-            <li class=" btn dropdown-item"><a class="btn" href="senate-attendance.html">Senate</a>
-            </li>
-            <li class=" btn dropdown-item"><a class="btn" href="house-attendance.html">House</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="btn btn-dark" data-toggle="dropdown">Party Loyalty</a>
-          <ul class="dropdown-menu">
-            <li class=" btn dropdown-item"><a class="btn" href="senate-party-loyalty.html">Senate</a></li>
-            <li class=" btn dropdown-item"><a class="btn" href="house-party-loyalty.html">House</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!--Table container-->
-  <div class="m-4">
-    <div class="w-50 float-left">
-      <h2>Party Loyalty</h2>
-      <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans
-        respectively,
-        tend to be the most faithful in voting for their party's nominee for office and legislation that backs
-        their
-        party's agenda. </p>
-    </div>
-
-    <div class="w-50 float-left">
+  <div id="app">
+    <nav class="position-relative overflow-hidden" :style="{height : high+'px'}">
+      <img id="background" src="img/primavera-en-estados-unidos.jpg" alt="uuee" class="position-absolute">
+      <menuprincipal></menuprincipal>
+    </nav>
+    <!--Table container-->
+    <div class="m-4">
+      <div class="w-50 float-left">
+        <h2>Party Loyalty</h2>
+        <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans
+          respectively,
+          tend to be the most faithful in voting for their party's nominee for office and legislation that backs
+          their
+          party's agenda. </p>
+      </div>
       <h2>House at a glance</h2>
-      <table class="p-3 w-100 table table-dark">
-        <thead>
-          <tr>
-            <th>Party</th>
-            <th>Number of Reps</th>
-            <th>% Voted with Prty</th>
-          </tr>
-        </thead>
-        <tbody id="firstTable">
-          <tr value="R">
-            <td>Republican</td>
-          </tr>
-          <tr value="D">
-            <td>Democrat</td>
-          </tr>
-          <tr value="I">
-            <td>Independent</td>
-          </tr>
-        </tbody>
-      </table>
+      <glance :members="members"></glance>
+  
+      <topbottom :members="members" field="votes_with_party_pct" title="Most Loyal"></topbottom>
+      <topbottom :members="members" field="votes_with_party_pct" title="Least Loyal"></topbottom>    
+  
     </div>
-
-    <div class="w-50 float-left">
-      <h2>Least Loyal (Bottom 10% of Party)</h2>
-      <table class="p-3 w-100 table table-dark">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Number Party Votes</th>
-            <th>% Party Votes</th>
-          </tr>
-        </thead>
-        <tbody id="bottomAttendance">
-        </tbody>
-      </table>
-    </div>
-
-    <div class="w-50 float-left">
-      <h2>Most Loyal (Top 10% of Party)</h2>
-      <table class="p-3 w-100 table table-dark">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Number Party Votes</th>
-            <th>% Party Votes</th>
-          </tr>
-        </thead>
-        <tbody id="topAttendance">
-        </tbody>
-      </table>
-    </div>
-
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -121,7 +46,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="js/json.js"></script>
-  <script src="js/partyLoyalty.js"></script>
+  <script src="js/componentes.js"></script>
 </body>
 
 </html>

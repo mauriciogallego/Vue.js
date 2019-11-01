@@ -36,8 +36,8 @@
       <h2>Senate at a glance</h2>
       <glance :members="members"></glance>
 
-      <topbottom :field="'missed_votes_pct'" :members="members" :title="'Most Engaged'"></topbottom>
-      <topbottom :field="'missed_votes_pct'" :members="members" :title="'Least Engaged'"></topbottom>
+      <topbottom :members="members" field="missed_votes_pct" :title="'Most Engaged'"></topbottom>
+      <topbottom :members="members" field="missed_votes_pct" :title="'Least Engaged'"></topbottom>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -51,7 +51,6 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="js/json.js"></script>
-  <script src="js/componentes2.js"></script>
   <script src="js/componentes.js"></script>
 
 </body>

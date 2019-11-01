@@ -1,7 +1,7 @@
 /*************MENU***************************************/
 Vue.component('menuprincipal', {
   template: //html
-  `<div class="clearfix bg-dark shadow rounded fixed-top">
+    `<div class="clearfix bg-dark shadow rounded fixed-top">
     <a id="logo" class="btn btn-dark" href="index.html">TGIF</a>
     <ul class="nav list-group-horizontal float-right">
       <li><a class="btn btn-dark" href="index.html">Home</a></li>
@@ -42,7 +42,7 @@ Vue.component('menuprincipal', {
 /*************TABLAS***************************************/
 Vue.component("filtertable", {
   template: //html
-`<div class="w-50 p-3">
+    `<div class="w-50 p-3">
  <div class="input-group mb-3">
     <h2 class="d-block w-100">Parties</h2>
     <label for="party"></label>
@@ -61,76 +61,77 @@ Vue.component("filtertable", {
   </div>
   <tableresult :members="members" :selected="selected" :checkParty="checkParty"></tableresult>
 </div>`,
-  data: function(){
-    return{
+  data: function () {
+    console.log('muchacho')
+    return {
       options: {
-    "" :"Choose State",
-    "AL": "Alabama",
-    "AK": "Alaska",
-    "AZ": "Arizona",
-    "AR": "Arkansas",
-    "CA": "California",
-    "CO": "Colorado",
-    "CT": "Connecticut",
-    "DE": "Delaware",
-    "FL": "Florida",
-    "GA": "Georgia",
-    "HI": "Hawaii",
-    "ID": "Idaho",
-    "IL": "Illinois",
-    "IN": "Indiana",
-    "IA": "Iowa",
-    "KS": "Kansas",
-    "KY": "Kentucky",
-    "LA": "Louisiana",
-    "ME": "Maine",
-    "MD": "Maryland",
-    "MA": "Massachusetts",
-    "MI": "Michigan",
-    "MN": "Minnesota",
-    "MS": "Mississippi",
-    "MO": "Missouri",
-    "MT": "Montana",
-    "NE": "Nebraska",
-    "NV": "Nevada",
-    "NH": "New Hampshire",
-    "NJ": "New Jersey",
-    "NM": "New Mexico",
-    "NY": "New York",
-    "NC": "North Carolina",
-    "ND": "North Dakota",
-    "OH": "Ohio",
-    "OK": "Oklahoma",
-    "OR": "Oregon",
-    "PA": "Pennsylvania",
-    "RI": "Rhode Island",
-    "SC": "South Carolina",
-    "SD": "South Dakota",
-    "TN": "Tennessee",
-    "TX": "Texas",
-    "UT": "Utah",
-    "VT": "Vermont",
-    "VA": "Virginia",
-    "WA": "Washington",
-    "WV": "West Virginia",
-    "WI": "Wisconsin",
-    "WY": "Wyoming",
+        "": "Choose State",
+        "AL": "Alabama",
+        "AK": "Alaska",
+        "AZ": "Arizona",
+        "AR": "Arkansas",
+        "CA": "California",
+        "CO": "Colorado",
+        "CT": "Connecticut",
+        "DE": "Delaware",
+        "FL": "Florida",
+        "GA": "Georgia",
+        "HI": "Hawaii",
+        "ID": "Idaho",
+        "IL": "Illinois",
+        "IN": "Indiana",
+        "IA": "Iowa",
+        "KS": "Kansas",
+        "KY": "Kentucky",
+        "LA": "Louisiana",
+        "ME": "Maine",
+        "MD": "Maryland",
+        "MA": "Massachusetts",
+        "MI": "Michigan",
+        "MN": "Minnesota",
+        "MS": "Mississippi",
+        "MO": "Missouri",
+        "MT": "Montana",
+        "NE": "Nebraska",
+        "NV": "Nevada",
+        "NH": "New Hampshire",
+        "NJ": "New Jersey",
+        "NM": "New Mexico",
+        "NY": "New York",
+        "NC": "North Carolina",
+        "ND": "North Dakota",
+        "OH": "Ohio",
+        "OK": "Oklahoma",
+        "OR": "Oregon",
+        "PA": "Pennsylvania",
+        "RI": "Rhode Island",
+        "SC": "South Carolina",
+        "SD": "South Dakota",
+        "TN": "Tennessee",
+        "TX": "Texas",
+        "UT": "Utah",
+        "VT": "Vermont",
+        "VA": "Virginia",
+        "WA": "Washington",
+        "WV": "West Virginia",
+        "WI": "Wisconsin",
+        "WY": "Wyoming",
       },
-      selected:'',
-      changeFunction: function(value){
-          this.selected = value.target.value
+      selected: '',
+      changeFunction: function (value) {
+        this.selected = value.target.value
       },
       party: {
         "D": "Democrat",
         "R": "Republican",
         "I": "Independet"
       },
-      checkParty:{
+      checkParty: {
         "D": false,
         "R": false,
         "I": false
       },
-      clickFunction: function(value){
+      clickFunction: function (value) {
         this.checkParty[value] = !this.checkParty[value]
       }
     }
@@ -140,7 +141,7 @@ Vue.component("filtertable", {
 
 Vue.component("tableresult", {
   template: //html
-  `<table class="p-3 w-100 float-left table table-dark">
+    `<table class="p-3 w-100 float-left table table-dark">
         <thead>
           <tr>
             <th scope="col">Members</th>
@@ -162,31 +163,95 @@ Vue.component("tableresult", {
           </tr>
         </tbody>
       </table>`,
-      data: function(){
-        return {
-          filtroCheck: function(value){
-            let flag= false;
-            for (partyvalue in this.checkParty){
-              if(this.checkParty[partyvalue] == true){
-                flag = true;
-                break;
-              }
-            }
-            if (flag!=false){
-              for (partyvalue in this.checkParty){
-                if(partyvalue == value.party) {
-                  console.log(this.checkParty[partyvalue])
-                  return this.checkParty[partyvalue]
-                }
-              }              
-            }else{
-              return true
-            }           
+  data: function () {
+    return {
+      filtroCheck: function (value) {
+        let flag = false;
+        for (partyvalue in this.checkParty) {
+          if (this.checkParty[partyvalue] == true) {
+            flag = true;
+            break;
           }
         }
-      },
-      props : ['members','checkParty','selected']
-    });
+        if (flag != false) {
+          for (partyvalue in this.checkParty) {
+            if (partyvalue == value.party) {
+              console.log(this.checkParty[partyvalue])
+              return this.checkParty[partyvalue]
+            }
+          }
+        } else {
+          return true
+        }
+      }
+    }
+  },
+  props: ['members', 'checkParty', 'selected']
+});
+
+Vue.component("glance", {
+  template://html
+    `<div class="w-100">
+        <table class="p-3 w-50 table table-dark">
+          <thead>
+            <tr>
+              <th>Party</th>
+              <th>Number of Reps</th>
+              <th>% Voted with Prty</th>
+            </tr>
+          </thead>
+          <tbody id="firstTable">
+            <tr v-for="(value,name) in calculo">
+              <td>{{name}}</td>
+              <td>{{value.members}}</td>
+              <td>{{value.porcent.toFixed(2) || 0 }}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>`,
+  data: function () {
+    return {
+      calculo: calculo(this.members)
+    }
+  },
+  props: ['members']
+});
+
+Vue.component("topbottom", {
+  template://html
+    `
+      <div class="w-50 float-left">
+      <h2>{{title}}</h2>
+    
+      <table class="p-3 w-100 table table-dark">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th v-if="field == 'missed_votes_pct'">Number of Missed Votes</th>
+            <th v-if="field == 'votes_with_party_pct'">Number Party Votes</th>
+            <th v-if="field == 'missed_votes_pct'">% Missed</th>
+            <th v-if="field == 'votes_with_party_pct'">% Party Votes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(value,name) in order" >
+            <td>{{value.first_name}}</td>
+            <td>{{value.missed_votes}}</td>
+            <td>{{value.missed_votes_pct}}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>`,
+  data: function () {
+    console.log(this.members, this.title, this.field)
+    return {
+      order: orderPosition(orderMembers(this.members, this.title, this.field))
+    }
+  },
+  props: ['members','title', 'field']
+});
+
 
 var app = new Vue({
   el: '#app',
@@ -194,20 +259,82 @@ var app = new Vue({
     high: window.innerHeight,
     members: []
   },
-  methods: {
-    json: function () {
-      let page;
-      if (window.location.href.indexOf("house") > -1) { page = "house" }
-      if (window.location.href.indexOf("senate") > -1) { page = "senate" }
-      getJson(page, (json) => {
-        this.members = json.results[0].members;
-        this.members.map(i=>{
-          i.total_vote_ptc = Math.floor((i.total_votes * i.votes_with_party_pct ) / 100);
-        })
-      });
-    }
-  },
-  created: function () {
-    this.json()
+  beforeCreate: function () {
+    let page;
+    if (window.location.href.indexOf("house") > -1) { page = "house" }
+    if (window.location.href.indexOf("senate") > -1) { page = "senate" }
+    getJson(page, (json) => {
+      let result = json.results[0].members;
+      this.members = result.map(i => {
+        i.total_vote_ptc = Math.floor((i.total_votes * i.votes_with_party_pct) / 100);
+        return i;
+      })
+    });
   }
 });
+
+function orderMembers(members, title, fieldOrder) {
+  if (title.indexOf('Least') != -1) {
+    return members.sort(function (a, b) {
+      return a[fieldOrder] - b[fieldOrder];
+    });
+  }
+  if (title.indexOf('Most') != -1) {
+    return members.sort(function (b, a) {
+      return a[fieldOrder] - b[fieldOrder];
+    });
+  }
+}
+
+function orderPosition(orderMember) {
+  let positions = [];
+  let tope = orderMember.length * 0.10;
+  let conteo = 0;
+
+  for (i of orderMember) {
+    conteo += 1;
+    let repite = positions.some(function (ele) {
+      return i.votes_with_party_pct == ele.votes_with_party_pct;
+    });
+    if (repite) { conteo -= 1 }
+    if (conteo >= tope) { break }
+    positions.push(i);
+  }
+  return positions;
+}
+
+function calculo(members) {
+  console.log('entro')
+  let container = {
+    republican: {
+      letter: "R",
+      members: 0,
+      porcent: 0
+    },
+    democrat: {
+      letter: "D",
+      members: 0,
+      porcent: 0
+    },
+    independet: {
+      letter: "I",
+      members: 0,
+      porcent: 0
+    }
+  }
+  for (member of members) {
+    if (member.party == container.democrat.letter) {
+      container.democrat.members += 1;
+      container.democrat.porcent = (container.democrat.porcent + member.votes_with_party_pct) / 2;
+    }
+    if (member.party == container.republican.letter) {
+      container.republican.members += 1;
+      container.republican.porcent = (container.republican.porcent + member.votes_with_party_pct) / 2;
+    }
+    if (member.party == container.independet.letter) {
+      container.independet.members += 1;
+      container.independet.porcent = (container.independet.porcent + member.votes_with_party_pct) / 2;
+    }
+  }
+  return container;
+}
